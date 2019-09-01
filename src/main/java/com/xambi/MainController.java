@@ -34,7 +34,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
  * @author User
  */
 @RestController
-@RequestMapping("/")
+@RequestMapping("/registration")
 @CrossOrigin
 public class MainController {
 
@@ -45,8 +45,33 @@ public class MainController {
 
     @Autowired
     private AccountRepository accountRepository;
+    
+    
+    @PostMapping(path = "/init-registration")
+    public @ResponseBody
+    ResponseEntity<?> registerUser(@RequestBody UserRegistration userRegistration) {
+        ResponseEntity response = null;
+        if (!isValid(userRegistration)) {
+            return ResponseEntity.badRequest().body("Error validating user.");
+        }
+        User user = null;
+        switch (userRegistration.getContext()) {
+            case UserRegistration.INIT_REGISTRATION:
+                response = initRegistration(userRegistration);
+                break;
+            case UserRegistration.COMPLETE_REGISTRATION_DATA:
+                response = completeRegistrationData(userRegistration);
+                break;
+            case UserRegistration.FINISH_REGISTRATION:
+                response = finishRegistration(userRegistration);
+                break;
+        }
 
-    @PostMapping(path = "/register")
+        return response;
+
+    }
+    
+    @PostMapping(path = "/init-registration")
     public @ResponseBody
     ResponseEntity<?> registerUser(@RequestBody UserRegistration userRegistration) {
         ResponseEntity response = null;
