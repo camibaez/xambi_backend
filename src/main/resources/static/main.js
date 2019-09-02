@@ -38,7 +38,7 @@ function registerPhone(e) {
     $.ajax({
         type: "POST",
         contentType: "application/json",
-        url: "/register",
+        url: "/registration/initialize",
         data: JSON.stringify(data),
         dataType: 'json',
         cache: false,
@@ -67,7 +67,7 @@ function confirmCode(e) {
     $.ajax({
         type: "POST",
         contentType: "application/json",
-        url: "/confirm-otp",
+        url: "/registration/confirm-otp",
         data: JSON.stringify(data),
         cache: false,
         timeout: 600000,
@@ -92,7 +92,7 @@ var registerUsername = function(e){
     $.ajax({
         type: "POST",
         contentType: "application/json",
-        url: "/register",
+        url: "/registration/complete",
         data: JSON.stringify(data),
         cache: false,
         timeout: 600000,
@@ -116,7 +116,7 @@ function clompleteUserRegister (){
     $.ajax({
         type: "POST",
         contentType: "application/json",
-        url: "/register",
+        url: "/registration/finish",
         data: JSON.stringify(data),
         cache: false,
         timeout: 600000,
