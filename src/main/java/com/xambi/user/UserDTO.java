@@ -3,9 +3,8 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.xambi.dto;
+package com.xambi.user;
 
-import com.xambi.User;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -17,7 +16,7 @@ import java.util.logging.Logger;
  *
  * @author User
  */
-public class UserRegistration {
+public class UserDTO {
     public final static int INIT_REGISTRATION = 1;
     public final static int CONFIRM_OTP = 2;
     public final static int COMPLETE_REGISTRATION_DATA = 3;
@@ -33,6 +32,22 @@ public class UserRegistration {
     private String id;
     private String tag;
 
+    public void loadFrom(User user){
+        username = user.getUsername();
+        phone = user.getPhone();
+        email = user.getEmail();
+    }
+    
+    public void loadTo(User user){
+        user.setUsername(username);
+        user.setPhone(phone);
+        user.setEmail(email);
+    }
+    
+    public boolean validate(){
+        return true;
+    }
+    
     public User prepareUser(){
         User user = null;
         user = new User();

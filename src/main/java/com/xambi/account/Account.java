@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.xambi;
+package com.xambi.account;
 
 import java.io.Serializable;
 import javax.persistence.Basic;

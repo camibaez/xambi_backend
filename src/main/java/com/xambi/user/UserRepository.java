@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.xambi;
+package com.xambi.user;
 
+import com.xambi.user.User;
 import java.util.List;
 import org.springframework.data.repository.CrudRepository;
 

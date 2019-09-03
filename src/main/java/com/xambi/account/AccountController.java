@@ -3,9 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.xambi;
+package com.xambi.account;
 
-import com.xambi.dto.AccountRegistration;
+import com.xambi.account.Account;
+import com.xambi.account.AccountDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -19,16 +20,16 @@ import org.springframework.web.bind.annotation.ResponseBody;
  * @author User
  */
 @RestController
-@RequestMapping("/url")
+@RequestMapping("/account")
 public class AccountController {
-
     @Autowired
     private AccountRepository accountRepository;
 
-    @PostMapping(path = "/account")
+    @PostMapping(path = "/register")
     public @ResponseBody
-    ResponseEntity<?> registerAccount(@RequestBody AccountRegistration accountRegistration) {
-        if (accountRegistration.isValid()) {
+    ResponseEntity<?> registerAccount(@RequestBody AccountDTO accountRegistration) {
+        boolean isValid = true;
+        if (isValid) {
             Account account = accountRegistration.prepareAccount();
             accountRepository.save(account);
             return ResponseEntity.ok("Account registered successfully!");

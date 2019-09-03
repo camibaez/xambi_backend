@@ -3,11 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.xambi;
+package com.xambi.user;
 
-import com.xambi.dto.AccountRegistration;
-import com.xambi.dto.OTPBundle;
-import com.xambi.dto.UserRegistration;
+import com.xambi.account.AccountDTO;
+import com.xambi.user.OTPBundle;
+import com.xambi.user.UserDTO;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -44,7 +44,7 @@ public class RegistrationController {
     
     @PostMapping(path = "/initialize")
     public @ResponseBody
-    ResponseEntity<?> registerUser(@RequestBody UserRegistration userRegistration) {
+    ResponseEntity<?> registerUser(@RequestBody UserDTO userRegistration) {
         boolean isValid = userRegistration.getPhone() != null
                 && !userRegistration.getPhone().isEmpty()
                 && userRegistration.getPhone().matches("^\\d{3}$");
@@ -61,13 +61,13 @@ public class RegistrationController {
 
     @PostMapping(path = "/confirm-otp")
     public @ResponseBody
-    ResponseEntity<?> confirmOtp(@RequestBody UserRegistration userRegistration) {
+    ResponseEntity<?> confirmOtp(@RequestBody UserDTO userRegistration) {
         return ResponseEntity.ok("Sucess");
     }
 
     @PostMapping(path = "/complete")
     public @ResponseBody
-    ResponseEntity<?> completeInformation(@RequestBody UserRegistration userRegistration) {
+    ResponseEntity<?> completeInformation(@RequestBody UserDTO userRegistration) {
         boolean isValid = true;
         if (isValid) {
             ResponseEntity response;
@@ -89,7 +89,7 @@ public class RegistrationController {
     
     @PostMapping(path = "/finish")
     public @ResponseBody
-    ResponseEntity<?> finishRegistration(@RequestBody UserRegistration userRegistration) {
+    ResponseEntity<?> finishRegistration(@RequestBody UserDTO userRegistration) {
         ResponseEntity response = null;
         Optional<User> userResult = userRepository.findById(userRegistration.getId());
         if (userResult.isPresent()) {

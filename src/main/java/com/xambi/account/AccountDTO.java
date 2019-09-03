@@ -3,10 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.xambi.dto;
+package com.xambi.account;
 
-import com.xambi.Account;
-import com.xambi.User;
+import com.xambi.user.User;
 import java.security.NoSuchAlgorithmException;
 import java.util.UUID;
 import java.util.logging.Level;
@@ -16,28 +15,20 @@ import java.util.logging.Logger;
  *
  * @author User
  */
-public class AccountRegistration {
+public class AccountDTO {
     private String accountNumber;
     private String userId;
     private short type;
 
     
      public Account prepareAccount(){
-        Account account =  null;
-        
-        account = new Account();
+        Account account = new Account();
         account.setAccountNumber(accountNumber);
         account.setUserId(userId);
         account.setType((short)type);
-        
-        account.setId(generateId());
+        account.setId(UUID.randomUUID().toString());
         
         return account;
-    }
-    
-    public String generateId(){
-        String id = UUID.randomUUID().toString();
-        return id;
     }
     /**
      * @return the accountNumber

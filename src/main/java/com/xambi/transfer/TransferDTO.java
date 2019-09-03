@@ -3,14 +3,15 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.xambi;
-
-import org.springframework.data.repository.CrudRepository;
+package com.xambi.transfer;
 
 /**
  *
  * @author User
  */
-public interface AccountRepository extends CrudRepository<Account, String> {
-    
+public class TransferDTO {
+    String sender;
+    String receiver;
+    String account;
+    float ammount;
 }
